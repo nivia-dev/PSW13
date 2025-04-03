@@ -9,12 +9,12 @@ from django.contrib import auth
 # Create your views here.
     
 def mentorados(request):
-    if not request.user is authenticate:
+    if not request.user.is_authenticated:
         return redirect('login')
     
     if request.method == 'GET':
         navigators = Navigators.objects.filter(user=request.user)
-        mentorados = Mentorados.objects.filter(uset=request.user)
+        mentorados = Mentorados.objects.filter(user=request.user)
         estagios_flat = [i[1] for i in Mentorados.estagio_choices]
         qtd_estagios = []
         
