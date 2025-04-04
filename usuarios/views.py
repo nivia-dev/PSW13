@@ -39,19 +39,17 @@ def cadastro(request):
         return redirect('/usuarios/login/')
     
 def login(request):
-    
     if request.method == "GET":
         return render(request, 'login.html')
     elif request.method == 'POST':
         username=request.POST.get('username')
         senha = request.POST.get('senha')
-       
-               
+            
         user = authenticate(request, username=username, password=senha)
                
         if user:
             auth.login(request, user)
             return redirect('/mentorados/')
         
-        messages.add_message(request, constants.ERROR, 'Username ou senhas inválidos')
+        messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
         return redirect('login')
