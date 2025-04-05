@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import timedelta
+import secrets
 
 # Create your models here.
 class Navigators(models.Model):
@@ -22,6 +24,34 @@ class Mentorados(models.Model):
     navigator = models.ForeignKey(Navigators, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     criado_em = models.DateField(auto_now_add=True)
+    token = models.CharField(max_length=16)
+    
+    def save(self, *args, **kargs):
+        if not self.token:
+            self.token = secrets.token_urlsafe(8)
+        super().save(*args, **kargs)
     
     def __str__(self):
         return self.nome
+    
+class DisponibilidadeHorarios(models.Model):
+    data_inicial = models.DateTimeField(null=True, blank=True)
+    mentor = models.ForeignKey(User, on_delete=models.CASCADE)
+    agendado = models.BooleanField(default=False)
+
+    @property
+    def data_final(self):
+        return self.data_inicial + timedelta(minutes=50)
+    
+'''class Reuniao(models.Model):
+    tag_choices = (
+        ('G', 'Gestão'),
+        ('M', 'Marketing'),
+        ('RH', 'Gestão de pessoas'),
+        ('I', 'Impostos')
+    )
+
+    data = models.ForeignKey(DisponibilidadeHorarios, on_delete=models.CASCADE)
+    mentorado = models.ForeignKey(Mentorados, on_delete=models.CASCADE)
+    tag = models.CharField(max_length=2, choices=tag_choices)
+    descricao = models.TextField()'''
