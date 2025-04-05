@@ -16,7 +16,6 @@ def mentorados(request):
     if request.method == 'GET':
         navigators = Navigators.objects.filter(user=request.user)
         mentorados = Mentorados.objects.filter(user=request.user)
-        
         estagios_flat = [i[1] for i in Mentorados.estagio_choices]
         qtd_estagios = []
         
