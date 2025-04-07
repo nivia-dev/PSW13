@@ -148,4 +148,26 @@ def agendar_reuniao(request):
 
         messages.add_message(request, constants.SUCCESS, 'Reunião agendada com sucesso.')
         return redirect('escolher_dia')
+    
+def tarefa(request, id):
+    mentorado = Mentorados.objects.get(id=id)
+    if mentorado.user != request.user:
+        raise Http404()
+    
+    if request.method == 'GET':
+        tarefas = Tarefa.objects.filter(mentorado=mentorado)
+        
+        return render(request, 'tarefa.html', {'mentorado': mentorado, 'tarefas': tarefas})
+    
+    else:
+        tarefa = request.POST.get('tarefa')
+
+        t = Tarefa(
+            mentorado=mentorado,
+            tarefa=tarefa,
+        )
+        t.save()
+
+        return redirect(f'/mentorados/tarefa/{mentorado.id}')
+
           
