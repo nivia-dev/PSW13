@@ -63,6 +63,9 @@ class Reuniao(models.Model):
     descricao = models.TextField()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c87b829 (Iniciando Tarefas)
 class Tarefa(models.Model):
     mentorado = models.ForeignKey(Mentorados, on_delete=models.DO_NOTHING)
     tarefa = models.CharField(max_length=255)
@@ -71,6 +74,10 @@ class Tarefa(models.Model):
 
 class Upload(models.Model):
     mentorado = models.ForeignKey(Mentorados, on_delete=models.DO_NOTHING)
+<<<<<<< HEAD
     video = models.FileField(upload_to='video')
 =======
 >>>>>>> 3d50b9a (Adicionado Reuniões)
+=======
+    video = models.FileField(upload_to='video')
+>>>>>>> c87b829 (Iniciando Tarefas)

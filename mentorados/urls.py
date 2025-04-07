@@ -8,10 +8,14 @@ urlpatterns = [
     path('escolher_dia/', views.escolher_dia, name='escolher_dia'),
     path('agendar_reuniao/', views.agendar_reuniao, name='agendar_reuniao'),
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('tarefa/<int:id>', views.tarefa, name='tarefa'),
     path('upload/<int:id>', views.upload, name='upload'),
     path('tarefa_mentorado/', views.tarefa_mentorado, name='tarefa_mentorado'),
     path('tarefa_alterar/<int:id>', views.tarefa_alterar, name="tarefa_alterar")
 =======
 >>>>>>> 3d50b9a (Adicionado Reuniões)
+=======
+    path('tarefa/<int:id>', views.tarefa, name='tarefa'),
+>>>>>>> c87b829 (Iniciando Tarefas)
 ]
