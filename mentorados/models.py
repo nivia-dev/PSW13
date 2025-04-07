@@ -62,6 +62,7 @@ class Reuniao(models.Model):
     tag = models.CharField(max_length=2, choices=tag_choices)
     descricao = models.TextField()
 
+<<<<<<< HEAD
 class Tarefa(models.Model):
     mentorado = models.ForeignKey(Mentorados, on_delete=models.DO_NOTHING)
     tarefa = models.CharField(max_length=255)
@@ -71,3 +72,5 @@ class Tarefa(models.Model):
 class Upload(models.Model):
     mentorado = models.ForeignKey(Mentorados, on_delete=models.DO_NOTHING)
     video = models.FileField(upload_to='video')
+=======
+>>>>>>> 3d50b9a (Adicionado Reuniões)
